@@ -1,0 +1,6 @@
+export default {
+    PRIMARY_COLOUR: '#11aa79',
+    SECONDARY_COLOUR: '#C1E1C1',
+    HIGHLIGHT_COLOUR: '#097969',
+    BACKGROUND_COLOUR: '#F8F8F8'
+};

@@ -9,16 +9,20 @@ const NewRecipe = () => {
 
   const [ingredients, setIngredients] = useContext(IngredientContext).ingredientObj
 
-  const addUser = () => {
-    console.log(ingredients)
+  const getRecipe = () => {
+    axios.post(`${global.API_URL}/recipe`, {ingredients}).then(res => console.log(JSON.stringify(res.data)))
+  }
+
+  const clearUsers = () => {
+    axios.get(`${global.API_URL}/user/clear`)
   }
 
   return (
     <View style={styles.newRecipeWrapper}>
         <Text style={styles.newRecipeText}>Find a recipe for you</Text>
-        <TouchableOpacity style={styles.newRecipeButton} onPress={addUser}> 
+        <TouchableOpacity style={styles.newRecipeButton} onPress={clearUsers}> 
             <Text style={styles.ButtonText}>
-                Select Ingredients
+                CLEAR USERS
             </Text>
         </TouchableOpacity>
     </View>

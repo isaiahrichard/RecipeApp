@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {View, ScrollView, StyleSheet} from 'react-native';
-import Header from '../Header'
-import SearchBarComp from '../SearchBarComp';
-import Footer from '../Footer';
+import Header from '../common/Header'
+import SearchBarComp from '../common/SearchBarComp';
+import Footer from '../common/Footer';
 import TimePicker from './TimePicker';
 import RecipeCardContainer from './RecipeCardContainer';
-import TabBar from '../TabBar';
+import TabBar from '../common/TabBar';
 import theme from '../../data/Style'
 
 

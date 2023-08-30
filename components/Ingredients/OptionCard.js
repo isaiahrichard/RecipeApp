@@ -1,17 +1,19 @@
 import React from 'react'
 import {View, StyleSheet, ScrollView} from 'react-native';
 
-import OptionButton from './IngredientButton';
+import OptionButton from './OptionButton';
+import {favouriteIngredients} from '../../data/IngredientData'
 
-const OptionCard = ({ buttonInfoArray, maxSize}) => {
+
+const OptionCard = ({maxSize}) => {
 
   return (
     <ScrollView style={{maxHeight: maxSize}}>
     <View style={styles.OptionCard}>
         <View style={styles.ButtonContainer}>
-            {buttonInfoArray.map((buttonInfo, index) => {
+            {favouriteIngredients.map((ingredient, index) => {
                 return <View style={{width: '47%', marginBottom: 12}} key={index}>
-                            <OptionButton addMode={buttonInfo.addMode} title={buttonInfo.title}/>
+                            <OptionButton title={ingredient}/>
                         </View>
             })}
         </View>

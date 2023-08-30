@@ -1,39 +1,24 @@
 import React, {useContext} from 'react'
 import {View, StyleSheet, Text, Image, TouchableHighlight} from 'react-native';
-import theme from '../../data/Style';
 import { IngredientContext } from '../Context/IngredientContext';
 
-const OptionButton = ( {addMode, title} ) => {
+const OptionButton = ( {title} ) => {
 
     const [ingredients, setIngredients] = useContext(IngredientContext).ingredientObj
 
-    const renderIcon = () => {
-        if(addMode){
-            return <Image source={require('../../Images/Add.png')} style={styles.OptionIcon}/>
-        }
-        return <Image source={require('../../Images/Remove.png')} style={styles.OptionIcon}/>
-    }
-
-    const buttonMode = () => {
-        if(addMode){
-            return styles.ButtonWrapper
-        }
-        return [styles.ButtonWrapper, {backgroundColor: theme.PRIMARY_COLOUR}]
-    }
-
-    const addIngredient = (ingredient) => {
+    const addIngredient = () => {
         // add ingredient to context here
-        if (!ingredients.includes(ingredient)){
-            setIngredients([...ingredients, ingredient])
+        if (!ingredients.includes(title)){
+            setIngredients([...ingredients, title])
         }
         return
     }
 
   return (
     <TouchableHighlight onPress={addIngredient} underlayColor={'transparent'}>
-    <View style={buttonMode()} >
+    <View style={styles.ButtonWrapper} >
         <Text style={styles.TabBarText}>{title}</Text>
-        {renderIcon()}
+        <Image source={require('../../Images/Add.png')} style={styles.OptionIcon}/>
     </View>
     </TouchableHighlight>
   )

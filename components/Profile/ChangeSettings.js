@@ -1,7 +1,7 @@
 import React from 'react'
 import {View, StyleSheet} from 'react-native';
 
-import ChangeButton from '../ChangeButton';
+import ChangeButton from '../common/ChangeButton';
 
 const ChangeSettings = () => {
   return (

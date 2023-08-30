@@ -1,11 +1,10 @@
 import React, {useContext} from 'react';
 import {View, ScrollView, StyleSheet, Text, FlatList, SafeAreaView, TouchableOpacity} from 'react-native';
-import Header from '../Header'
-import SearchBarComp from '../SearchBarComp';
-import Footer from '../Footer';
-import OptionCard from './IngredientCard';
-import ChangeButton from '../ChangeButton';
-import {favouriteIngredients} from '../../data/IngredientData'
+import Header from '../common/Header'
+import SearchBarComp from '../common/SearchBarComp';
+import Footer from '../common/Footer';
+import OptionCard from './OptionCard';
+import ChangeButton from '../common/ChangeButton';
 import theme from '../../data/Style'
 import { SearchContext } from '../Context/SearchContext';
 import Category from './Category.js';
@@ -24,9 +23,8 @@ const Ingredients = ( {navigation} ) => {
   const {searchStateObj, currSearchObj} = useContext(SearchContext);
 
   const addIngredient = (ingredient) => {
-    // add ingredient to context here
-    if (!ingredients.includes(ingredient)){
-        setIngredients({...ingredients, ingredient})
+    if (!ingredients.includes(ingredient.title)){
+        setIngredients([...ingredients, ingredient.title])
     }
     return
 }
@@ -53,7 +51,7 @@ const Ingredients = ( {navigation} ) => {
       {!searchStateObj[0] && <ScrollView>
       <View>
         <Text style={styles.CardTitle}>Favourite Ingredients</Text>
-        <OptionCard buttonInfoArray={favouriteIngredients} maxSize={200}/>
+        <OptionCard maxSize={200}/>
         <Category />
         <View style={styles.ChangeSettings}>
           <ChangeButton text="Your Ingredients" icon={require('../../Images/Settings.png')}/>

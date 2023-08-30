@@ -1,39 +1,55 @@
-import React, {useEffect} from 'react'
+import React, {useContext} from 'react'
+import {View, ScrollView, Alert} from 'react-native';
 import axios from 'axios'
-import {View, ScrollView} from 'react-native';
 import FieldBoxWrapper from './FieldBoxWrapper';
-import Title from './Title';
-import CheckBoxMsg from '../CheckBoxMsg'
-import Button from '../Button';
+import Title from '../common/Title';
+import CheckBoxMsg from '../common/CheckBoxMsg'
+import Button from '../common/Button';
 import Divider from './Divider';
 import OffsiteLoginButton from './OffsiteLoginButton';
 import FooterMessage from './FooterMessage';
 import BottomLogo from './BottomLogo';
 import theme from '../../data/Style'
+import { LoginContext } from '../Context/LoginContext';
+import { StateContext } from '../Context/StateContext';
 
 const Login = ( {navigation} ) => {
-
-  useEffect(() => {
-    axios.get(`${global.API_URL}/users`).then(
-      res => console.log(res.data)
-    )
-  }, [])
-  
-
   googleIcon = require('../../Images/Google.png')
+
+  const {usernameObj, passwordObj, nameObj} = useContext(LoginContext)
+  const [currentUser, setCurrentUser] = useContext(StateContext).currentUserObj
+
+  const handleLogin = () => {
+    const userInfo = {username: usernameObj[0], password: passwordObj[0]}
+    axios.post(`${global.API_URL}/user/login`, userInfo)
+    .then(response => {
+        navigation.navigate("home")
+        setCurrentUser(response.data)
+    })
+    .catch(error => {
+      console.error('An error occurred:', error.message);
+      Alert.alert(
+        "Invalid login credentials"
+      );
+      usernameObj[1]("")
+      passwordObj[1]("")
+      nameObj[1]("")
+    });
+  }
+
 
   return (
     <View style={{flex: 1, backgroundColor: theme.BACKGROUND_COLOUR}}>
       <ScrollView>
-        <Title />
+        <Title title="Less Thinking, More Eating."/>
         <FieldBoxWrapper />
         <View style={{marginTop: 22}}>
           <CheckBoxMsg message="Remember me"/>
         </View>
-        <Button text="Login" navigation={navigation} />
+        <Button text="Login" onClick={handleLogin}/>
         <Divider />
         <OffsiteLoginButton icon={googleIcon} text="Login with Google"/>
-        <FooterMessage />
+        <FooterMessage navigation={navigation}/>
       </ScrollView>
       <BottomLogo />
     </View>

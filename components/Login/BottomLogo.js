@@ -8,7 +8,7 @@ const BottomLogo = () => {
   return (
     <View style={styles.MsgWrapper}>
         <Image source={require('../../Images/Logo.png')}/>
-        <Text style={{textAlign: 'center'}}>Developed 2022{"\n"}Isaiah Richards{"\n"}Afraz Hemraj</Text>
+        <Text style={{textAlign: 'center'}}>Developed 2023{"\n"}Isaiah Richards</Text>
     </View>
   )
 }

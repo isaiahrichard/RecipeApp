@@ -2,10 +2,10 @@ import React from 'react'
 import {View, Text, StyleSheet} from 'react-native';
 
 
-const Title = () => {
+const Title = ({title}) => {
   return (
     <View style={styles.TextWrapper}>
-        <Text style={styles.InnerText}>Less Thinking, More Eating.</Text>
+        <Text style={styles.InnerText}>{title}</Text>
     </View>
   )
 }

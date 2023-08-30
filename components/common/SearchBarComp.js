@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {View, StyleSheet, TextInput, Image, TouchableOpacity} from 'react-native';
-import { SearchContext } from './Context/SearchContext';
-import { ingredients } from '../data/IngredientList';
+import { SearchContext } from '../Context/SearchContext';
+import { ingredients } from '../../data/IngredientList';
 import { useRoute } from '@react-navigation/native';
 
 const SearchBarComp = ({placeholderText}) => {
@@ -30,13 +30,13 @@ const SearchBarComp = ({placeholderText}) => {
     <View style={styles.searchBarWrapper}>
       {(searchStateObj[0] && onOptions) && <TouchableOpacity onPress={() => searchStateObj[1](false)}>
         <Image
-          source={require('../Images/BackArrow.png')} 
+          source={require('../../Images/BackArrow.png')} 
           style={styles.BackIcon}
         />
       </TouchableOpacity>}
       <View style={[styles.SectionStyle, {width: (searchStateObj[0] && onOptions) ? '86%' : '93.6%', marginHorizontal: searchStateObj[0] && onOptions ? 0 : 12}]}>
           <Image
-              source={require('../Images/SearchIcon.png')} 
+              source={require('../../Images/SearchIcon.png')} 
               style={styles.ImageStyle}
               />
           <TextInput

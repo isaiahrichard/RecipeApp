@@ -1,6 +1,6 @@
 import React from 'react'
 import {View, Text, Image, StyleSheet, TouchableHighlight} from 'react-native';
-import theme from '../data/Style'
+import theme from '../../data/Style'
 
 const TabBar = ({ingredientTab, setIngredientTab, titles}) => {
 
@@ -18,13 +18,13 @@ const TabBar = ({ingredientTab, setIngredientTab, titles}) => {
         <TouchableHighlight onPress={() => setIngredientTab(false)} style={styles.touchButtons}>
             <View style={selectedTab(!ingredientTab)}>
                 <Text style={styles.TabBarText}>{titles[0]}</Text>
-                <Image source={require('../Images/Appliances.png')} style={{marginBottom: 3}}/>
+                <Image source={require('../../Images/Appliances.png')} style={{marginBottom: 3}}/>
             </View>
         </TouchableHighlight>
         <TouchableHighlight onPress={() => setIngredientTab(true)} style={styles.touchButtons}>
             <View style={selectedTab(ingredientTab)}>
                 <Text style={styles.TabBarText}>{titles[1]}</Text>
-                <Image source={require('../Images/IngredTab.png')} style={{marginBottom: 5}}/>
+                <Image source={require('../../Images/IngredTab.png')} style={{marginBottom: 5}}/>
             </View>
         </TouchableHighlight>
     </View> 

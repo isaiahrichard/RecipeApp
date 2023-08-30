@@ -4,14 +4,10 @@ const StateContext = createContext()
 
 const StateProvider = ({children}) => {
 
-    const [username, setUsername] = useState("test");
-    const [password, setPassword] = useState("testPass");
-    const [toggleCheckbox, setToggleCheckbox] = useState(false);
+    const [currentUser, setCurrentUser] = useState({})
 
     const contextVariables = {
-        usernameObj: [username, setUsername], 
-        passwordObj: [password, setPassword],
-        checkBoxObj: [toggleCheckbox, setToggleCheckbox]
+        currentUserObj: [currentUser, setCurrentUser]
     }
 
     return (

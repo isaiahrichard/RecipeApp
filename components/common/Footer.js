@@ -1,25 +1,25 @@
 import React, { useContext } from 'react'
 import { View, Image, StyleSheet, TouchableHighlight} from 'react-native'
 import { useRoute } from '@react-navigation/native';
-import { StateContext } from './Context/StateContext';
-import { SearchContext } from './Context/SearchContext';
-import theme from '../data/Style'
-import { ingredients } from '../data/IngredientList';
+import { LoginContext } from '../Context/LoginContext';
+import { SearchContext } from '../Context/SearchContext';
+import theme from '../../data/Style'
+import { ingredients } from '../../data/IngredientList';
 
 const Footer = ( {navigation} ) => {
   
     const route = useRoute()
 
-    homeDark = require('../Images/Footer/HomeDark.png')
-    homeLight = require('../Images/Footer/HomeLight.png')
-    OptionsDark = require('../Images/Footer/OptionsDark.png')
-    OptionsLight = require('../Images/Footer/OptionsLight.png')
-    RecipesDark = require('../Images/Footer/RecipesDark.png')
-    RecipesLight = require('../Images/Footer/RecipesLight.png')
-    ProfileDark = require('../Images/Footer/ProfileDark.png')
-    ProfileLight = require('../Images/Footer/ProfileLight.png')
-    LoginLight = require('../Images/Settings.png')
-    LoginDark = require('../Images/Footer/LoginDark.png')
+    homeDark = require('../../Images/Footer/HomeDark.png')
+    homeLight = require('../../Images/Footer/HomeLight.png')
+    OptionsDark = require('../../Images/Footer/OptionsDark.png')
+    OptionsLight = require('../../Images/Footer/OptionsLight.png')
+    RecipesDark = require('../../Images/Footer/RecipesDark.png')
+    RecipesLight = require('../../Images/Footer/RecipesLight.png')
+    ProfileDark = require('../../Images/Footer/ProfileDark.png')
+    ProfileLight = require('../../Images/Footer/ProfileLight.png')
+    LoginLight = require('../../Images/Settings.png')
+    LoginDark = require('../../Images/Footer/LoginDark.png')
 
     onHomePage = route.name == 'home'
     onOptionsPage = route.name == 'options'
@@ -55,7 +55,7 @@ const Footer = ( {navigation} ) => {
       }
     ]
 
-    const {usernameObj, passwordObj, checkBoxObj} = useContext(StateContext)
+    const {usernameObj, passwordObj, checkBoxObj} = useContext(LoginContext)
     const {searchStateObj, currSearchObj} = useContext(SearchContext);
 
     const handlePress = (Page) => {

@@ -1,15 +1,15 @@
 import React from 'react'
-import {View, StyleSheet, Text, Linking} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 
 
-const FooterMessage = () => {
+const FooterMessage = ({navigation}) => {
 
 
   return (
     <View style={styles.MsgWrapper}>
         <Text style={styles.MsgText}>Don't have and account?</Text>
         <Text style={[styles.MsgText, styles.Link]}
-        onPress={() => Linking.openURL('http://google.com')}>
+        onPress={() => navigation.navigate("signup")}>
             Sign Up Now
         </Text>
     </View>

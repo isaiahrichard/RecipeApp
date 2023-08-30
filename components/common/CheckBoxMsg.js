@@ -1,8 +1,8 @@
 import React, {useContext, useState} from 'react';
 import CheckBox from '@react-native-community/checkbox';
 import {View, StyleSheet, Text} from 'react-native';
-import { StateContext } from './Context/StateContext';
-import theme from '../data/Style'
+import { LoginContext } from '../Context/LoginContext';
+import theme from '../../data/Style'
 import { useRoute } from '@react-navigation/native';
 
 
@@ -10,7 +10,7 @@ import { useRoute } from '@react-navigation/native';
 const CheckBoxMsg = ({message}) => {
 
     const [checkVal, setCheckVal] = useState(false);
-    const {checkBoxObj} = useContext(StateContext);
+    const {checkBoxObj} = useContext(LoginContext);
     const onLogin = useRoute().name == 'login';
 
 

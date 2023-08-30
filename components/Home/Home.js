@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, ScrollView, StyleSheet, Text} from 'react-native';
-import Header from '../Header'
-import Footer from '../Footer';
+import Header from '../common/Header'
+import Footer from '../common/Footer';
 import WeeklyRecipes from './WeeklyRecipes';
 import RecipeScroller from './RecipeScroller';
 import RecipeCarosuelCard from '../Recipes/RecipeCarosuelCard';

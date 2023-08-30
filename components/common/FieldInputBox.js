@@ -1,28 +1,22 @@
-import React, { useContext }from 'react'
+import React from 'react'
 import {View, StyleSheet, Image, TextInput} from 'react-native';
-
-import { LoginContext } from '../Context/LoginContext';
-
-
-const FieldBox = ({icon, isPassword=false}) => {
-
-    const [stateVar, setStateVar] = useContext(LoginContext)[isPassword ? 'passwordObj' : 'usernameObj']
-
-
+const FieldInputBox = ({icon='', value, setValue, placeholder}) => {
+    
   return (
     <View style={styles.InputWrapper}>
-        <View style={styles.IconWrapper}>
-            <Image source={icon}/>
-        </View>
+        {icon &&
+            <View style={styles.IconWrapper}>
+                <Image source={icon}/>
+            </View>
+        }
         <View style={styles.InputBox}>
             <TextInput
-                placeholder={isPassword ? 'Password' : 'Username or email'}
+                placeholder={placeholder}
                 placeholderTextColor="#515151"
                 underlineColorAndroid="transparent"
                 spellCheck={false}
-                value={stateVar}
-                onChangeText={(inputText) => setStateVar(inputText)}
-                secureTextEntry={isPassword}
+                value={value}
+                onChangeText={(inputText) => setValue(inputText)}
             />
         </View>
     </View>
@@ -31,8 +25,6 @@ const FieldBox = ({icon, isPassword=false}) => {
 
 const styles = StyleSheet.create({
     InputBox: {
-        borderLeftWidth: 1,
-        borderLeftColor: '#686060',
         flexGrow: 2.5,
         borderTopRightRadius: 5,
         borderBottomRightRadius: 5,
@@ -50,8 +42,10 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        maxWidth: 50
+        maxWidth: 50,
+        borderRightWidth: 1,
+        borderRightColor: '#686060',
     }
   });
 
-export default FieldBox
+export default FieldInputBox

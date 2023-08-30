@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, ScrollView} from 'react-native';
-import Header from '../Header'
-import Footer from '../Footer';
+import Header from '../common/Header'
+import Footer from '../common/Footer';
 import ProfileInfo from './ProfileInfo';
 import ChangeSettings from './ChangeSettings';
 import StatsHeader from './StatsHeader';

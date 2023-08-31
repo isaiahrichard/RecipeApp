@@ -4,8 +4,8 @@ const LoginContext = createContext()
 
 const LoginProvider = ({children}) => {
 
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("isaiah3415");
+    const [password, setPassword] = useState("pass123");
     const [toggleCheckbox, setToggleCheckbox] = useState(false);
     const [name, setName] = useState("");
 

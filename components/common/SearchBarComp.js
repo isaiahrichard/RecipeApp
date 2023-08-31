@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {View, StyleSheet, TextInput, Image, TouchableOpacity} from 'react-native';
 import { SearchContext } from '../Context/SearchContext';
-import { ingredients } from '../../data/IngredientList';
+import {cachedIngredients} from '../../data/CachedIngredients'
 import { useRoute } from '@react-navigation/native';
 
 const SearchBarComp = ({placeholderText}) => {
@@ -12,17 +12,17 @@ const SearchBarComp = ({placeholderText}) => {
 
   const containsSubstring = (ingredient) => {
     const searchLen = searchVar.length;
-    return (ingredient.title.substring(0, searchLen).toUpperCase() == searchVar.toUpperCase()) || (searchLen >= 3 && ingredient.title.toUpperCase().includes(searchVar.toUpperCase()));
+    return (ingredient.name.substring(0, searchLen).toUpperCase() == searchVar.toUpperCase()) || (searchLen >= 3 && ingredient.name.toUpperCase().includes(searchVar.toUpperCase()));
   }
 
   useEffect(() => {
     const searchLen = searchVar.length;
     if(searchLen){
-      const filteredSearch = ingredients.filter(containsSubstring);
+      const filteredSearch = cachedIngredients.filter(containsSubstring);
       currSearchObj[1](filteredSearch);
     }
     else{
-      currSearchObj[1](ingredients);
+      currSearchObj[1](cachedIngredients);
     }
   }, [searchVar])
 

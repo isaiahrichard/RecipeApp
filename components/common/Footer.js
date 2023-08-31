@@ -4,7 +4,6 @@ import { useRoute } from '@react-navigation/native';
 import { LoginContext } from '../Context/LoginContext';
 import { SearchContext } from '../Context/SearchContext';
 import theme from '../../data/Style'
-import { ingredients } from '../../data/IngredientList';
 
 const Footer = ( {navigation} ) => {
   
@@ -56,7 +55,7 @@ const Footer = ( {navigation} ) => {
     ]
 
     const {usernameObj, passwordObj, checkBoxObj} = useContext(LoginContext)
-    const {searchStateObj, currSearchObj} = useContext(SearchContext);
+    const {searchStateObj} = useContext(SearchContext);
 
     const handlePress = (Page) => {
       if(Page.pageName == 'login'){
@@ -69,7 +68,6 @@ const Footer = ( {navigation} ) => {
         //navigation.navigate(Page.pageName)
       }
       searchStateObj[1](false);
-      currSearchObj[1](ingredients)
       navigation.navigate(Page.pageName)
     }
 

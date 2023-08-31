@@ -2,15 +2,17 @@ import React, {useContext} from 'react'
 import axios from 'axios'
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import theme from '../../data/Style'
-import { IngredientContext } from '../Context/IngredientContext';
+import { StateContext } from '../Context/StateContext';
 
 
 const NewRecipe = () => {
 
-  const [ingredients, setIngredients] = useContext(IngredientContext).ingredientObj
+  const currentUser = useContext(StateContext).currentUserObj[0]
 
   const getRecipe = () => {
-    axios.post(`${global.API_URL}/recipe`, {ingredients}).then(res => console.log(JSON.stringify(res.data)))
+    console.log(currentUser)
+    //axios.post(`${global.API_URL}/recipe`, currentUser.ingredients).then(res => console.log(JSON.stringify(res.data)))
+    axios.get(`${global.API_URL}/ingredients`)
   }
 
   const clearUsers = () => {
@@ -20,9 +22,9 @@ const NewRecipe = () => {
   return (
     <View style={styles.newRecipeWrapper}>
         <Text style={styles.newRecipeText}>Find a recipe for you</Text>
-        <TouchableOpacity style={styles.newRecipeButton} onPress={clearUsers}> 
+        <TouchableOpacity style={styles.newRecipeButton} onPress={getRecipe}> 
             <Text style={styles.ButtonText}>
-                CLEAR USERS
+                TEST INGREDIENTS
             </Text>
         </TouchableOpacity>
     </View>

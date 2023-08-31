@@ -17,7 +17,7 @@ const Login = ( {navigation} ) => {
   googleIcon = require('../../Images/Google.png')
 
   const {usernameObj, passwordObj, nameObj} = useContext(LoginContext)
-  const [currentUser, setCurrentUser] = useContext(StateContext).currentUserObj
+  const setCurrentUser = useContext(StateContext).currentUserObj[1]
 
   const handleLogin = () => {
     const userInfo = {username: usernameObj[0], password: passwordObj[0]}

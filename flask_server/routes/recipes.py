@@ -9,7 +9,7 @@ API_KEY = "d36fbc78732e43698019cbc00f22c1f1"
 @recipes.route("/recipe", methods=["POST"])
 def get_recipes():
     url = "https://api.spoonacular.com/recipes/findByIngredients"
-    ingredients = ",".join(request.get_json()["ingredients"])
+    ingredients = ",".join(request.get_json())
     params = {
         "apiKey": API_KEY,
         "number": 10,

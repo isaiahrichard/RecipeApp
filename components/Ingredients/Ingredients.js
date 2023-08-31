@@ -3,58 +3,50 @@ import {View, ScrollView, StyleSheet, Text, FlatList, SafeAreaView, TouchableOpa
 import Header from '../common/Header'
 import SearchBarComp from '../common/SearchBarComp';
 import Footer from '../common/Footer';
-import OptionCard from './OptionCard';
+import UserIngredients from './UserIngredients';
 import ChangeButton from '../common/ChangeButton';
 import theme from '../../data/Style'
 import { SearchContext } from '../Context/SearchContext';
 import Category from './Category.js';
-import { IngredientContext } from '../Context/IngredientContext';
-
-
-
-const Item = ({item, onPress, backgroundColor, textColor}) => (
-  <TouchableOpacity onPress={onPress} style={[styles.item, {backgroundColor}]}>
-    <Text style={[styles.title, {color: textColor}]}>{item.title}</Text>
-  </TouchableOpacity>
-);
+import { StateContext } from '../Context/StateContext';
+import IngredientList from './IngredientList';
 
 const Ingredients = ( {navigation} ) => {
-  const [ingredients, setIngredients] = useContext(IngredientContext).ingredientObj
-  const {searchStateObj, currSearchObj} = useContext(SearchContext);
-
+  const [currentUser, setCurrentUser] = useContext(StateContext).currentUserObj
+  const {searchStateObj} = useContext(SearchContext);
+  
   const addIngredient = (ingredient) => {
-    if (!ingredients.includes(ingredient.title)){
-        setIngredients([...ingredients, ingredient.title])
+    if (!currentUser.ingredients.includes(ingredient.title)){
+        setCurrentUser({...currentUser, ingredients: [...currentUser.ingredients, ingredient.title]})
     }
     return
 }
   const renderItem = ({item}) => {
     return (
       <Item item={item} onPress={() => {addIngredient(item)}} backgroundColor={theme.PRIMARY_COLOUR}
-        textColor={'white'}
+      textColor={'white'}
       />
-    );
-  };
+      );
+    };
+    
+  const Item = ({item, onPress, backgroundColor, textColor}) => (
+    <TouchableOpacity onPress={onPress} style={[styles.item, {backgroundColor}]}>
+      <Text style={[styles.title, {color: textColor}]}>{item.title}</Text>
+    </TouchableOpacity>
+  );
+
 
   return (
     <View style={{flex: 1, backgroundColor: theme.BACKGROUND_COLOUR}}>
       <Header/>
       <SearchBarComp placeholderText={"Search for ingredients"}/>
       {searchStateObj[0] &&
-        <SafeAreaView style={styles.container}>
-        <FlatList
-          data={currSearchObj[0]}
-          renderItem={renderItem}
-          keyExtractor={item => item.id}
-        />
-      </SafeAreaView>}
+        <IngredientList />}
       {!searchStateObj[0] && <ScrollView>
       <View>
-        <Text style={styles.CardTitle}>Favourite Ingredients</Text>
-        <OptionCard maxSize={200}/>
+        <UserIngredients />
         <Category />
         <View style={styles.ChangeSettings}>
-          <ChangeButton text="Your Ingredients" icon={require('../../Images/Settings.png')}/>
           <ChangeButton text="Scan Receipt" icon={require('../../Images/Appliances.png')}/>
         </View>
       </View>
@@ -82,25 +74,9 @@ const styles = StyleSheet.create({
       fontFamily: 'Poppins-Regular',
       marginLeft: 12
   },
-  CardTitle: {
-    marginTop: 10,
-    paddingLeft: 16,
-    fontSize: 16,
-    color: '#000',
-    fontFamily: 'Poppins-Regular'
-},
 container: {
   flex: 1,
 },
-item: {
-  padding: 10,
-  marginVertical: 2,
-  marginHorizontal: 12,
-  borderRadius: 10
-},
-title: {
-  fontSize: 16,
-}
 });
 
 export default Ingredients

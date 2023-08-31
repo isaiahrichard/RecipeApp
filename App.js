@@ -11,7 +11,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { LoginProvider } from './components/Context/LoginContext';
 import { SearchProvider } from './components/Context/SearchContext';
-import { IngredientProvider } from './components/Context/IngredientContext';
 import { StateProvider } from './components/Context/StateContext';
 
 const Stack = createNativeStackNavigator();
@@ -21,7 +20,6 @@ const App = () => {
   global.API_URL = Platform.OS === 'ios' ? 'http://localhost:5000' : 'http://10.0.2.2:5000';
 
   return (
-    <IngredientProvider>
     <LoginProvider>
       <SearchProvider>
         <StateProvider>
@@ -38,7 +36,6 @@ const App = () => {
       </StateProvider>
       </SearchProvider>
     </LoginProvider>
-    </IngredientProvider>
   );
 };
 

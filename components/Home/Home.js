@@ -8,7 +8,7 @@ import RecipeCarosuelCard from '../Recipes/RecipeCarosuelCard';
 import NewRecipe from './NewRecipe';
 import theme from '../../data/Style'
 
-const HomePage = ( {navigation} ) => {
+const HomePage = () => {
   return (
     <View style={{flex: 1, backgroundColor: theme.BACKGROUND_COLOUR}}>
     <ScrollView>
@@ -25,7 +25,7 @@ const HomePage = ( {navigation} ) => {
         </View>
       </View>
     </ScrollView>
-    <Footer navigation = {navigation}/>
+    <Footer/>
   </View>
   )
 }

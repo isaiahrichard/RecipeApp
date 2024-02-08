@@ -5,19 +5,19 @@ import CategoryButton from './CategoryButton';
 const Category = () => {
 
   const categoryInfo = [
-  {title: 'Veggies', icon: require('../../Images/veggies.png')}, 
-  {title: 'Dairy', icon: require('../../Images/dairy.png')},
-  {title: 'Meats', icon: require('../../Images/meats.png')},
-  {title: 'Spices', icon: require('../../Images/spices.png')},
-  {title: 'Carbs', icon: require('../../Images/carbs.png')},
-  {title: 'Liquids', icon: require('../../Images/liquids.png')},
+  {title: 'Veggies', icon: require('../../Images/veggies.png'), id: 'veg'}, 
+  {title: 'Dairy', icon: require('../../Images/dairy.png'), id: 'dairy'},
+  {title: 'Meats', icon: require('../../Images/meats.png'), id: 'meats'},
+  {title: 'Spices', icon: require('../../Images/spices.png'), id: 'spices'},
+  {title: 'Carbs', icon: require('../../Images/carbs.png'), id: 'carbs'},
+  {title: 'Sauces', icon: require('../../Images/liquids.png'), id: 'sauces'},
 ]
 
   return (
     <View style={styles.Category}>
         <View style={styles.ButtonContainer}>
           {categoryInfo.map((category, index) => {
-            return <CategoryButton text={category.title} icon={category.icon} key={index}/>
+            return <CategoryButton text={category.title} icon={category.icon} key={index} id={category.id}/>
           })}
 
         </View>

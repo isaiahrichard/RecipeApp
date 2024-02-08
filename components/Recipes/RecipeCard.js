@@ -1,20 +1,25 @@
-import React from 'react'
-import {View, StyleSheet, Text, Image} from 'react-native';
+import React, {useContext} from 'react'
+import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
+import { StateContext } from '../Context/StateContext';
 
-const RecipeCard = ({recipeName}) => {
+const RecipeCard = ({recipe}) => {
 
     const imgSrc = require('../../Images/Ingredients.png')
+    const [currentRecipe, setCurrentRecipe] = useContext(StateContext).curretnRecipeObj
+    const navigation = useContext(StateContext).navigation
 
   return (
-    <View style={styles.CardWrapper}>
-        <Image
-        source={imgSrc} 
-        style={styles.CardImg}
-        />
-        <View style={[styles.CardTextWrapper]}>
-            <Text style={styles.CardText}>{recipeName}</Text>
-        </View>
-  </View>
+    <TouchableOpacity onPress={() => {setCurrentRecipe(recipe); navigation.navigate('recipepage')}}>
+      <View style={styles.CardWrapper}>
+          <Image
+          source={imgSrc} 
+          style={styles.CardImg}
+          />
+          <View style={[styles.CardTextWrapper]}>
+              <Text style={styles.CardText}>{recipe.name}</Text>
+          </View>
+    </View>
+  </TouchableOpacity>
   )
 }
 

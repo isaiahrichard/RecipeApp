@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect} from 'react'
 import {View, ScrollView, Alert} from 'react-native';
 import axios from 'axios'
 import FieldBoxWrapper from './FieldBoxWrapper';
@@ -16,8 +16,14 @@ import { StateContext } from '../Context/StateContext';
 const Login = ( {navigation} ) => {
   googleIcon = require('../../Images/Google.png')
 
+  useEffect(() => {
+    setNav(navigation)
+  }, [])
+  
+
   const {usernameObj, passwordObj, nameObj} = useContext(LoginContext)
   const setCurrentUser = useContext(StateContext).currentUserObj[1]
+  const setNav = useContext(StateContext).setNav
 
   const handleLogin = () => {
     const userInfo = {username: usernameObj[0], password: passwordObj[0]}
@@ -49,7 +55,7 @@ const Login = ( {navigation} ) => {
         <Button text="Login" onClick={handleLogin}/>
         <Divider />
         <OffsiteLoginButton icon={googleIcon} text="Login with Google"/>
-        <FooterMessage navigation={navigation}/>
+        <FooterMessage/>
       </ScrollView>
       <BottomLogo />
     </View>

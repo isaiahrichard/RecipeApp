@@ -1,53 +1,25 @@
-import React, {useEffect, useContext} from 'react'
-import {StyleSheet, FlatList, SafeAreaView, TouchableOpacity, Text} from 'react-native';
+import React, {useEffect} from 'react'
+import {StyleSheet, FlatList, SafeAreaView} from 'react-native';
+import ListComponent from '../common/ListComponent';
 
-import theme from '../../data/Style'
-
-import { SearchContext } from '../Context/SearchContext';
-import { StateContext } from '../Context/StateContext';
-
-import { cachedIngredients } from '../../data/CachedIngredients';
-
-
-  
-const IngredientList = () => {
-
-  const { currSearchObj } = useContext(SearchContext);
-  const [currentUser, setCurrentUser] = useContext(StateContext).currentUserObj
-
-
-    const addIngredient = (ingredient) => {
-      if (!currentUser.ingredients.includes(ingredient.name)){
-          setCurrentUser({...currentUser, ingredients: [...currentUser.ingredients, ingredient.name]})
-      }
-      return
-   }
-
-    const renderItem = ({item}) => {
-        return (
-            <Item item={item} onPress={() => {addIngredient(item)}} backgroundColor={theme.PRIMARY_COLOUR}
-            textColor={'white'}
-            />
-        );
-    };
-    
-    const Item = ({item, onPress, backgroundColor, textColor}) => (
-    <TouchableOpacity onPress={onPress} style={[styles.item, {backgroundColor}]}>
-        <Text style={[styles.title, {color: textColor}]}>{item.name}</Text>
-    </TouchableOpacity>
-    );
+const IngredientList = ({displayList}) => {
 
   useEffect(() => {
-    currSearchObj[1](cachedIngredients)
-  }, [])
+    console.log(displayList.length)
+  }, [displayList])
   
 
   return (
     <SafeAreaView style={styles.container}>
         <FlatList
-          data={currSearchObj[0]}
-          renderItem={renderItem}
+          data={displayList}
+          renderItem={({item}) => (
+            <ListComponent item={item} />
+          )}
           keyExtractor={item => item.id}
+          removeClippedSubviews={true}
+          maxToRenderPerBatch={8}
+          initialNumToRender={20}
         />
       </SafeAreaView>
   )

@@ -1,8 +1,11 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {View, StyleSheet, Text} from 'react-native';
+import { StateContext } from '../Context/StateContext';
 
 
-const FooterMessage = ({navigation}) => {
+const FooterMessage = () => {
+
+  const navigation = useContext(StateContext).navigation
 
 
   return (

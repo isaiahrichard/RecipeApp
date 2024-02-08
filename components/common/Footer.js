@@ -3,9 +3,10 @@ import { View, Image, StyleSheet, TouchableHighlight} from 'react-native'
 import { useRoute } from '@react-navigation/native';
 import { LoginContext } from '../Context/LoginContext';
 import { SearchContext } from '../Context/SearchContext';
+import { StateContext } from '../Context/StateContext';
 import theme from '../../data/Style'
 
-const Footer = ( {navigation} ) => {
+const Footer = () => {
   
     const route = useRoute()
 
@@ -56,6 +57,7 @@ const Footer = ( {navigation} ) => {
 
     const {usernameObj, passwordObj, checkBoxObj} = useContext(LoginContext)
     const {searchStateObj} = useContext(SearchContext);
+    const navigation = useContext(StateContext).navigation
 
     const handlePress = (Page) => {
       if(Page.pageName == 'login'){

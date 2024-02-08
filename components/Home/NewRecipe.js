@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 import axios from 'axios'
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import theme from '../../data/Style'
-import { StateContext } from '../Context/StateContext';
+  import { StateContext } from '../Context/StateContext';
 
 
 const NewRecipe = () => {
@@ -10,13 +10,7 @@ const NewRecipe = () => {
   const currentUser = useContext(StateContext).currentUserObj[0]
 
   const getRecipe = () => {
-    console.log(currentUser)
-    //axios.post(`${global.API_URL}/recipe`, currentUser.ingredients).then(res => console.log(JSON.stringify(res.data)))
-    axios.get(`${global.API_URL}/ingredients`)
-  }
-
-  const clearUsers = () => {
-    axios.get(`${global.API_URL}/user/clear`)
+    
   }
 
   return (

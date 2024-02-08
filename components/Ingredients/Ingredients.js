@@ -1,47 +1,28 @@
-import React, {useContext} from 'react';
-import {View, ScrollView, StyleSheet, Text, FlatList, SafeAreaView, TouchableOpacity} from 'react-native';
+import React, {useContext, useState} from 'react';
+import theme from '../../data/Style'
+import {View, ScrollView, StyleSheet} from 'react-native';
+
 import Header from '../common/Header'
 import SearchBarComp from '../common/SearchBarComp';
 import Footer from '../common/Footer';
 import UserIngredients from './UserIngredients';
 import ChangeButton from '../common/ChangeButton';
-import theme from '../../data/Style'
-import { SearchContext } from '../Context/SearchContext';
 import Category from './Category.js';
-import { StateContext } from '../Context/StateContext';
 import IngredientList from './IngredientList';
 
-const Ingredients = ( {navigation} ) => {
-  const [currentUser, setCurrentUser] = useContext(StateContext).currentUserObj
-  const {searchStateObj} = useContext(SearchContext);
-  
-  const addIngredient = (ingredient) => {
-    if (!currentUser.ingredients.includes(ingredient.title)){
-        setCurrentUser({...currentUser, ingredients: [...currentUser.ingredients, ingredient.title]})
-    }
-    return
-}
-  const renderItem = ({item}) => {
-    return (
-      <Item item={item} onPress={() => {addIngredient(item)}} backgroundColor={theme.PRIMARY_COLOUR}
-      textColor={'white'}
-      />
-      );
-    };
-    
-  const Item = ({item, onPress, backgroundColor, textColor}) => (
-    <TouchableOpacity onPress={onPress} style={[styles.item, {backgroundColor}]}>
-      <Text style={[styles.title, {color: textColor}]}>{item.title}</Text>
-    </TouchableOpacity>
-  );
+import { SearchContext } from '../Context/SearchContext';
+import { allIngredients } from '../../data/allIngredients';
 
+const Ingredients = () => {
+  const {searchStateObj} = useContext(SearchContext);
+  const [ingredientList, setIngredientList] = useContext(SearchContext).ingredientObj
 
   return (
     <View style={{flex: 1, backgroundColor: theme.BACKGROUND_COLOUR}}>
       <Header/>
-      <SearchBarComp placeholderText={"Search for ingredients"}/>
+      <SearchBarComp placeholderText={"Search for ingredients"} searchList={allIngredients} setFilteredList={setIngredientList}/>
       {searchStateObj[0] &&
-        <IngredientList />}
+        <IngredientList displayList={ingredientList}/>}
       {!searchStateObj[0] && <ScrollView>
       <View>
         <UserIngredients />
@@ -51,7 +32,7 @@ const Ingredients = ( {navigation} ) => {
         </View>
       </View>
     </ScrollView>}
-    {!searchStateObj[0] && <Footer navigation = {navigation}/>}
+    {!searchStateObj[0] && <Footer/>}
   </View>
   )
 }

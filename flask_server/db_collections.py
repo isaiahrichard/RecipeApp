@@ -7,3 +7,4 @@ db = MongoClient(
 RecipEasyDB = db.get_database("recipe-app")
 
 user_col = RecipEasyDB.get_collection("users")
+recipe_col = RecipEasyDB.get_collection("recipes")

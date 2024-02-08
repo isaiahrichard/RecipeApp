@@ -2,13 +2,14 @@ import React, {useContext} from 'react'
 import theme from '../../data/Style'
 import IngredientTile from './IngredientTile';
 import { StateContext } from '../Context/StateContext';
+import { SearchContext } from '../Context/SearchContext';
 import {View, StyleSheet, ScrollView, TouchableOpacity, Text, Image} from 'react-native';
 
 
 const UserIngredients = () => {
 
   const currentUser = useContext(StateContext).currentUserObj[0]
-
+  const {searchStateObj} = useContext(SearchContext);
 
   return (
     <ScrollView >
@@ -32,7 +33,7 @@ const UserIngredients = () => {
           <Text style={styles.EmptyPantryHeader}>Your pantry is empty</Text>
           <Image source={require('../../Images/pantry.png')} style={styles.EmptyPantryIcon}/>
 
-          <TouchableOpacity style={[styles.PantryButtonWrapper, styles.EmptyPantryButton]}>
+          <TouchableOpacity style={[styles.PantryButtonWrapper, styles.EmptyPantryButton]} onPress={() => searchStateObj[1](true)}>
             <Text style={[styles.PantryButtonText, styles.EmptyPantryButtonText]}>Add ingredients</Text>
           </TouchableOpacity> 
         </View> }

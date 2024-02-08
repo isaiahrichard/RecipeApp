@@ -1,28 +1,28 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {View, StyleSheet, TextInput, Image, TouchableOpacity} from 'react-native';
 import { SearchContext } from '../Context/SearchContext';
-import {cachedIngredients} from '../../data/CachedIngredients'
 import { useRoute } from '@react-navigation/native';
 
-const SearchBarComp = ({placeholderText}) => {
-  const {searchStateObj, currSearchObj} = useContext(SearchContext);
+const SearchBarComp = ({placeholderText, searchList, setFilteredList}) => {
+  const {searchStateObj} = useContext(SearchContext);
   const [searchVar, setSearchVar] = useState("");
   const route = useRoute();
   const onOptions = route.name == 'options'
 
-  const containsSubstring = (ingredient) => {
+  const containsSubstring = (listItem) => {
     const searchLen = searchVar.length;
-    return (ingredient.name.substring(0, searchLen).toUpperCase() == searchVar.toUpperCase()) || (searchLen >= 3 && ingredient.name.toUpperCase().includes(searchVar.toUpperCase()));
+    const listItemInfo = ('name' in listItem) ? listItem.name : listItem
+    return (listItemInfo.substring(0, searchLen).toUpperCase() == searchVar.toUpperCase()) || (searchLen >= 3 && listItemInfo.toUpperCase().includes(searchVar.toUpperCase()));
   }
 
   useEffect(() => {
-    const searchLen = searchVar.length;
-    if(searchLen){
-      const filteredSearch = cachedIngredients.filter(containsSubstring);
-      currSearchObj[1](filteredSearch);
+    //add smarter filtering 
+    if(searchVar.length){
+      const filteredSearch = searchList.filter(containsSubstring);
+      setFilteredList(filteredSearch);
     }
     else{
-      currSearchObj[1](cachedIngredients);
+      setFilteredList(searchList);
     }
   }, [searchVar])
 
@@ -46,7 +46,7 @@ const SearchBarComp = ({placeholderText}) => {
               underlineColorAndroid="transparent"
               spellCheck={false}
               value={searchVar}
-              onChangeText={inputText => setSearchVar(inputText)} //not setting search text correctly
+              onChangeText={inputText => setSearchVar(inputText)}
               onFocus={() => searchStateObj[1](true)}
               blurOnSubmit={true}
               />

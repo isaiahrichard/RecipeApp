@@ -34,7 +34,7 @@ const RecipeCardContainer = ({title, data, ready}) => {
       <View>
         <ScrollView style={{maxHeight: 350}}>
           <View style={styles.RecipeContainer}> 
-              {data.map((name, index) => <RecipeCard recipeName={name} key={index}/>)}
+              {data.map((recipe, index) => <RecipeCard recipe={recipe} key={index}/>)}
           </View>
         </ScrollView>
         {ready ? favouriteRecipeScroll() : substitutes()}

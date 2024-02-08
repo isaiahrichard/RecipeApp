@@ -5,9 +5,14 @@ const StateContext = createContext()
 const StateProvider = ({children}) => {
 
     const [currentUser, setCurrentUser] = useState({})
+    const [currentRecipe, setCurrentRecipe] = useState({})
+    const [navigation, setNavigation] = useState({})
 
     const contextVariables = {
-        currentUserObj: [currentUser, setCurrentUser]
+        currentUserObj: [currentUser, setCurrentUser],
+        curretnRecipeObj: [currentRecipe, setCurrentRecipe],
+        setNav: setNavigation,
+        navigation: navigation
     }
 
     return (

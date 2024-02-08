@@ -4,14 +4,16 @@ import axios from 'axios'
 import Title from '../common/Title';
 import BottomLogo from '../Login/BottomLogo';
 import { LoginContext } from '../Context/LoginContext';
+import { StateContext } from '../Context/StateContext';
 import FieldInputBox from '../common/FieldInputBox';
 import Button from '../common/Button';
 import theme from '../../data/Style'
 
-const Login = ( {navigation} ) => {
+const Login = () => {
 
   googleIcon = require('../../Images/Google.png')
   const {usernameObj, passwordObj, nameObj} = useContext(LoginContext)
+  const navigation = useContext(LoginContext).navigation
 
   useEffect(() => {
     usernameObj[1]("")

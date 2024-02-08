@@ -6,6 +6,7 @@ import Recipes from './components/Recipes/Recipes';
 import Profile from './components/Profile/Profile';
 import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp'
+import RecipePageBase from './components/RecipePage/RecipePageBase';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -31,6 +32,7 @@ const App = () => {
           <Stack.Screen name='recipes' component={Recipes}/>
           <Stack.Screen name='profile' component={Profile}/>
           <Stack.Screen name='signup' component={SignUp} />
+          <Stack.Screen name='recipepage' component={RecipePageBase} />
         </Stack.Navigator>
       </NavigationContainer>
       </StateProvider>

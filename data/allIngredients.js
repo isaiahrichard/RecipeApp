@@ -1,4 +1,4 @@
-export const cachedIngredients = [
+export const allIngredients = [
 {name: "5 spice powder", id: "1002002"},
 {name: "Acorn squash", id: "11482"},
 {name: "Adobo sauce", id: "6979"},

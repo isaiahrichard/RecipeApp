@@ -8,7 +8,7 @@ import StatsHeader from './StatsHeader';
 import Stats from './Stats';
 import theme from '../../data/Style'
 
-const Profile = ( {navigation} ) => {
+const Profile = () => {
   return (
     <View style={{flex: 1, backgroundColor: theme.BACKGROUND_COLOUR}}>
     <ScrollView>
@@ -19,7 +19,7 @@ const Profile = ( {navigation} ) => {
       <Stats color='#FFD772' icon={require('../../Images/RecipeStat.png')} text='Recipes Cooked: 13'/>
       <Stats color='#B8FF81' icon={require('../../Images/IngredTab.png')} text='Unique Ingredients Used: 56'/>
     </ScrollView>
-    <Footer navigation = {navigation}/>
+    <Footer/>
   </View>
   )
 }

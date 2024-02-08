@@ -13,7 +13,7 @@ const ScrollCard = ({title, recipes}) => {
             <Text style={{paddingTop: 10}}>See all</Text>
         </View>
         {recipes.map((recipe, index) => {
-            return <RecipeCard recipeName={recipe} key={index}/>
+            return <RecipeCard recipe={recipe} key={index}/>
         })}
       </View>
   )

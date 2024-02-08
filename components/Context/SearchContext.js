@@ -1,5 +1,5 @@
 import React, {useState, createContext } from 'react'
-import { cachedIngredients } from '../../data/CachedIngredients';
+import { allIngredients } from '../../data/allIngredients';
 
 
 const SearchContext = createContext();
@@ -7,11 +7,13 @@ const SearchContext = createContext();
 const SearchProvider = ({children}) => {
 
     const [onSearch, setOnSearch] = useState(false);
-    const [currSearch, setCurrSearch] = useState(cachedIngredients);
+    const [currSearch, setCurrSearch] = useState([]);
+    const [ingredientList, setIngredientList] = useState(allIngredients)
 
     const contextVariables = {
         searchStateObj: [onSearch, setOnSearch], 
         currSearchObj: [currSearch, setCurrSearch],
+        ingredientObj : [ingredientList, setIngredientList]
     }
 
     return (
